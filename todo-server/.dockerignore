@@ -1,0 +1,14 @@
+# Ignore dependencies installed on host
+node_modules
+
+# Ignore logs
+npm-debug.log
+yarn-error.log
+
+# Ignore local env files (we copy them separately if needed)
+# .env
+
+# System files
+.DS_Store
+.git
+.gitignore
