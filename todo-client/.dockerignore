@@ -1,0 +1,18 @@
+# Ignore dependencies installed on host
+node_modules
+
+# Ignore logs
+npm-debug.log
+yarn-error.log
+
+# Ignore local env files (Vite loads via env_file)
+# .env
+
+# Ignore build artifacts
+dist
+build
+
+# System files
+.DS_Store
+.git
+.gitignore

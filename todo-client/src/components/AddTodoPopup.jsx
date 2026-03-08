@@ -38,7 +38,7 @@ function AddTodoPopup() {
     <div>
       <button
         onClick={() => setIsOpen(true)}
-        className="px-3 py-2 bg-blue-500 text-white rounded-md cursor-pointer"
+        className="px-3 py-2 bg-blue-500 text-white rounded-md cursor-pointer text-sm font-medium"
       >
         Add Todo
       </button>
