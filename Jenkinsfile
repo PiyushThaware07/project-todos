@@ -52,11 +52,11 @@ pipeline {
 
         stage('Deploy Application') {
             steps {
-                echo 'Deploying using prod compose'
+                echo 'Deploying application using Docker Compose'
                 sh """
-                docker compose -f docker-compose.prod.yml pull
-                docker compose -f docker-compose.prod.yml down || true
-                docker compose -f docker-compose.prod.yml up -d
+                docker-compose -f docker-compose.prod.yml pull
+                docker-compose -f docker-compose.prod.yml down || true
+                docker-compose -f docker-compose.prod.yml up -d
                 """
             }
         }
