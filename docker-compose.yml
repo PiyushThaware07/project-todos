@@ -33,6 +33,12 @@ services:
     networks:
     - todo-network
 
+  sonar-scanner:
+    image: sonarsource/sonar-scanner-cli:latest
+    volumes:
+      - .:/usr/src/app
+    working_dir: /usr/src/app
+
 volumes:
   mongo_data:
 

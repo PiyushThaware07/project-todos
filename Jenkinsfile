@@ -58,22 +58,24 @@ pipeline {
             steps {
                 echo 'Deploying application using Docker Compose'
                 sh """
-                docker-compose -f docker-compose.prod.yml pull
-                docker-compose -f docker-compose.prod.yml down || true
-                docker-compose -f docker-compose.prod.yml up -d
+                docker-compose -f docker-compose.yml pull
+                docker-compose -f docker-compose.yml down || true
+                docker-compose -f docker-compose.yml up -d
                 """
             }
         }
         
         stage('Sonar Scan') {
             steps {
-                sh '''
-                docker run --rm -v $(pwd):/usr/src/app -w /usr/src/app sonarsource/sonar-scanner-cli \
-                -Dsonar.projectKey=$SONAR_PROJECT_KEY \
-                -Dsonar.organization=$SONAR_ORG \
-                -Dsonar.host.url=$SONAR_HOST_URL \
-                -Dsonar.login=$SONAR_LOGIN
-                '''
+                echo 'Running SonarQube Scan'
+                sh """
+                    docker-compose run --rm \
+                    -e SONAR_PROJECT_KEY=${SONAR_PROJECT_KEY} \
+                    -e SONAR_ORG=${SONAR_ORG} \
+                    -e SONAR_HOST_URL=${SONAR_HOST_URL} \
+                    -e SONAR_LOGIN=${SONAR_LOGIN} \
+                    sonar-scanner
+                """
             }
         }
     }
