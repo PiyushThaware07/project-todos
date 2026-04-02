@@ -6,6 +6,8 @@ pipeline {
         GIT_REPO = 'https://github.com/PiyushThaware07/project-todos' 
         GIT_BRANCH = 'main-production'
         IMAGE_TAG = "latest"
+        SONAR_HOST_URL = 'https://sonarcloud.io/'
+        SONAR_LOGIN = credentials('sonarqube-creds')
     }
 
     stages {
@@ -58,6 +60,17 @@ pipeline {
                 docker-compose -f docker-compose.prod.yml down || true
                 docker-compose -f docker-compose.prod.yml up -d
                 """
+            }
+        }
+        
+        stage('Sonar Scan') {
+            steps {
+                sh '''
+                  docker run --rm -v $(pwd):/usr/src/app -w /usr/src/app sonarsource/sonar-scanner-cli \
+                  -Dsonar.projectKey=project-todos \
+                  -Dsonar.host.url=$SONAR_HOST_URL \
+                  -Dsonar.login=$SONAR_LOGIN
+                '''
             }
         }
     }

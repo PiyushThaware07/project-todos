@@ -3,3 +3,4 @@ Action Items
 2. Setup Docker for client/server ✅
 3. Setup Docker Compose ✅
 4. Setup Jenkins ✅
+5. Setup Sonar Scan
