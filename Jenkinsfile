@@ -8,6 +8,8 @@ pipeline {
         IMAGE_TAG = "latest"
         SONAR_HOST_URL = 'https://sonarcloud.io/'
         SONAR_LOGIN = credentials('sonarqube-creds')
+        SONAR_ORG = 'piyushthaware07'
+        SONAR_PROJECT_KEY = 'project-todos' 
     }
 
     stages {
@@ -66,10 +68,11 @@ pipeline {
         stage('Sonar Scan') {
             steps {
                 sh '''
-                  docker run --rm -v $(pwd):/usr/src/app -w /usr/src/app sonarsource/sonar-scanner-cli \
-                  -Dsonar.projectKey=project-todos \
-                  -Dsonar.host.url=$SONAR_HOST_URL \
-                  -Dsonar.login=$SONAR_LOGIN
+                docker run --rm -v $(pwd):/usr/src/app -w /usr/src/app sonarsource/sonar-scanner-cli \
+                -Dsonar.projectKey=$SONAR_PROJECT_KEY \
+                -Dsonar.organization=$SONAR_ORG \
+                -Dsonar.host.url=$SONAR_HOST_URL \
+                -Dsonar.login=$SONAR_LOGIN
                 '''
             }
         }
