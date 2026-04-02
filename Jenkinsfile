@@ -4,7 +4,7 @@ pipeline {
     environment { 
         DOCKERHUB_USERNAME = 'piyushthaware07'
         GIT_REPO = 'https://github.com/PiyushThaware07/project-todos' 
-        GIT_BRANCH = 'main'
+        GIT_BRANCH = 'main-production'
         IMAGE_TAG = "latest"
     }
 
