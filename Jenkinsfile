@@ -21,8 +21,8 @@ pipeline {
             steps {
                 echo 'Building images using Dockerfiles'
                 sh """
-                docker build -t ${DOCKERHUB_USERNAME}/todo-client:${IMAGE_TAG} ./todo-client
-                docker build -t ${DOCKERHUB_USERNAME}/todo-server:${IMAGE_TAG} ./todo-server
+                sudo docker build -t ${DOCKERHUB_USERNAME}/todo-client:${IMAGE_TAG} ./todo-client
+                sudo docker build -t ${DOCKERHUB_USERNAME}/todo-server:${IMAGE_TAG} ./todo-server
                 """
             }
         }
@@ -44,8 +44,8 @@ pipeline {
         stage('Push Images') {
             steps {
                 sh """ 
-                docker push ${DOCKERHUB_USERNAME}/todo-client:${IMAGE_TAG}
-                docker push ${DOCKERHUB_USERNAME}/todo-server:${IMAGE_TAG}
+                sudo docker push ${DOCKERHUB_USERNAME}/todo-client:${IMAGE_TAG}
+                sudo docker push ${DOCKERHUB_USERNAME}/todo-server:${IMAGE_TAG}
                 """
             }
         }
@@ -54,9 +54,9 @@ pipeline {
             steps {
                 echo 'Deploying using prod compose'
                 sh """
-                docker compose -f docker-compose.prod.yml pull
-                docker compose -f docker-compose.prod.yml down || true
-                docker compose -f docker-compose.prod.yml up -d
+                sudo docker compose -f docker-compose.prod.yml pull
+                sudo docker compose -f docker-compose.prod.yml down || true
+                sudo docker compose -f docker-compose.prod.yml up -d
                 """
             }
         }
@@ -64,7 +64,7 @@ pipeline {
 
     post { 
         always { 
-            sh 'docker system prune -f' 
+            sh 'sudo docker system prune -f' 
         } 
     }
 }
