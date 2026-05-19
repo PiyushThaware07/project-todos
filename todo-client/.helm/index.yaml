@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  todo-client:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2026-05-19T04:27:54.537418777Z"
+    description: A Helm chart for Kubernetes
+    digest: bb2fcabce98aee7b36078e79dfb7200ed50b63053470834673bf6647a167d218
+    name: todo-client
+    type: application
+    urls:
+    - todo-client-0.1.0.tgz
+    version: 0.1.0
+generated: "2026-05-19T04:27:54.53685572Z"

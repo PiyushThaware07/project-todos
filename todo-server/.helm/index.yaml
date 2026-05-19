@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  todo-server:
+  - apiVersion: v2
+    appVersion: 1.16.1
+    created: "2026-05-19T04:28:25.176912564Z"
+    description: A Helm chart for Kubernetes
+    digest: 1ad20487aacd25fa4d2e870e379b1138c9a24706d03c8bc5fdd9cb6c7e7b7dc0
+    name: todo-server
+    type: application
+    urls:
+    - todo-server-0.1.0.tgz
+    version: 0.1.0
+generated: "2026-05-19T04:28:25.176382613Z"
